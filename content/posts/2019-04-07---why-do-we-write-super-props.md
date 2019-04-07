@@ -10,17 +10,17 @@ tags:
 description: "Tại sao chúng ta phải viết super(props)? Bạn có thắc mắc giống mình không, hãy đọc bài này nhé. Có một twist khá thú vị ở cuối bài nhé."
 ---
 
-Tôi đã nghe [Hooks](https://reactjs.org/docs/hooks-intro.html) là một thứ mới nóng bỏng. Cơ mà, tôi muốn bắt đầu bài viết này bằng cách nói về điều thú vị của *class* components.
+[Hooks](https://reactjs.org/docs/hooks-intro.html) đang là tâm điểm của React trong những ngày qua. Cơ mà, mình muốn bắt đầu bài viết này bằng cách nói về điều thú vị của *class* components.
 
 **Những vấn đề này *không* quan trọng cho việc sử dụng React một cách hiệu quả. Nhưng bạn sẽ cảm thấy chúng thú vị nếu như bạn muốn tìm hiểu sâu hơn về cách hoạt động của chúng.**
 
-Đây là bài đầu tiên.
+Bắt đầu nào.
 
 ---
 
-Tôi đã viết `super(props)` rất nhiều lần hơn là tôi biết:
+Mình đã viết `super(props)` rất nhiều lần:
 
-```jsx{3}
+```jsx
 class Checkbox extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,7 @@ Cú pháp như thế này [đã lên kế hoạch](https://reactjs.org/blog/2015
 
 Nhưng hãy quay về ví dụ trước khi chỉ sử dụng các tính năng của ES2015:
 
-```jsx{3}
+```jsx
 class Checkbox extends React.Component {
   constructor(props) {
     super(props);
@@ -98,7 +98,7 @@ Hãy tưởng tượng khi bạn dùng `this` trước `super`  *đã* chấp th
 ```jsx
   greetColleagues() {
     alert('Chào buổi sáng!');
-    alert('Tên tôi là ' + this.name + ', rất vui được gặp bạn!');
+    alert('Tên mình là ' + this.name + ', rất vui được gặp bạn!');
   }
 ```
 
@@ -132,7 +132,7 @@ class Component {
 
 Điều này không xa với thực tế — thật sự, đó là [cách mà chúng thực hiện](https://github.com/facebook/react/blob/1d25aa5787d4e19704c049c3cfa985d3b5190e0d/packages/react/src/ReactBaseClasses.js#L22).
 
-Nhưng bằng cách nào đó, nếu bạn gọi `super()` mà không có tham số `props`, bạn vẫn có thể sử dụng `this.props` trong phương thức `render` và các phương thức khác. (Nếu không tin tôi, hãy tự kiểm tra xem!)
+Nhưng bằng cách nào đó, nếu bạn gọi `super()` mà không có tham số `props`, bạn vẫn có thể sử dụng `this.props` trong phương thức `render` và các phương thức khác. (Nếu không tin mình, hãy tự kiểm tra xem!)
 
 Vậy *nó* hoạt động như thế nào? Hóa ra **React đã gán `props` cho một instance ngay sau constructor *của bạn*:**
 
@@ -150,7 +150,7 @@ Vậy có nghĩa là bạn có thể gọi `super()` thay vì `super(props)`?
 
 **Có lẽ là không bởi vì nó vẫn còn khó hiểu.** Chắc chắn, React sẽ gán `this.props` *sau khi*  constructor của bạn được chạy. Nhưng `this.props` vẫn chưa được định nghĩa *giữa* việc gọi `super` và kết thúc constructor của bạn:
 
-```jsx{14}
+```jsx
 // Bên trong React
 class Component {
   constructor(props) {
@@ -170,7 +170,7 @@ class Button extends React.Component {
 }
 ```
 
-Việc debug sẽ trở nên khó khăn nếu như một vài phương thức được gọi *từ* constructor. **Đó là lý do vì sao tôi khuyên khích bạn sử dụng `super(props)`, mặc dù nó không cần thiết:**
+Việc debug sẽ trở nên khó khăn nếu như một vài phương thức được gọi *từ* constructor. **Đó là lý do vì sao mình khuyên khích bạn sử dụng `super(props)`, mặc dù nó không cần thiết:**
 
 ```jsx
 class Button extends React.Component {
