@@ -59,7 +59,7 @@ class Checkbox extends React.Component {
 
 Trong JavaScript, `super` để gọi lại constructor của lớp cha. (Trong ví dụ của chúng ta, đấy chính là lớp `React.Component`.)
 
-Điều quan trọng, bạn không thể sử dụng `this` trong constructor cho đến lúc *sau khi* bạn gọi đến constructor của lớp tra. JavaScript sẽ không để bạn làm việc này:
+Điều quan trọng, bạn không thể sử dụng `this` trong constructor cho đến lúc *sau khi* bạn gọi đến constructor của lớp cha. JavaScript sẽ không để bạn làm việc này:
 
 ```jsx
 class Checkbox extends React.Component {
