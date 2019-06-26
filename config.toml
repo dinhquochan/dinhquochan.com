@@ -1,0 +1,17 @@
+baseURL = "https://dinhquochan.com"
+languageCode = "vi-vn"
+title = "Dinh Quoc Han's Blog"
+
+summaryLength = 1_000_000
+rssLimit = 10
+
+[taxonomies]
+  category = "categories"
+
+[permalinks]
+  page = '/:filename/'
+  posts = "/:year/:month/:filename/"
+  categories = "/category/:title/"
+
+[author]
+  name = "Dinh Quoc Han"

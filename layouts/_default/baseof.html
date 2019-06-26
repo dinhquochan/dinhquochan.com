@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.Language.Lang }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    {{ if not (eq .Title $.Site.Title) }}
+      <title>{{ .Title }} — {{ $.Site.Title }}</title>
+    {{ else }}
+      <title>{{ $.Site.Title }}</title>
+    {{ end }}
+
+    <link rel="alternate" type="application/rss+xml" href="/index.xml" title="Dinh Quoc Han's Blog: Main feed" />
+    <link rel="alternate" type="application/rss+xml" href="/articles/index.xml" title="Dinh Quoc Han's Blog: Articles feed" />
+
+    {{ with resources.Get "css/site.css" | minify }}
+      <style>{{ .Content | safeCSS }}</style>
+    {{ end }}
+    {{ with resources.Get "css/hljs.css" | minify }}
+      <style>{{ .Content | safeCSS }}</style>
+    {{ end }}
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="nav wrap">
+        <header>
+          <a href="/">{{ $.Site.Title }}</a>
+        </header>
+        <ul>
+          <li><a href="/about/" rel="me">About</a></li>
+          <li><a href="https://twitter.com/handinh157" rel="me">Twitter</a></li>
+          <li><a href="/index.xml">RSS</a></li>
+        </ul>
+      </nav>
+      <main class="wrap">
+        {{ block "main" . }}{{ end }}
+      </main>
+    </div>
+
+    {{ if eq (getenv "HUGO_ENV") "production" }}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64071435-11"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-64071435-11');
+      </script>
+    {{ end }}
+  </body>
+</html>
