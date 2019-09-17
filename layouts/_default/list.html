@@ -19,11 +19,6 @@
     <section class="markup">
       {{ if .Truncated }}
         {{ .Summary }}
-        <p>
-          <a href="{{ .RelPermalink }}">
-            Read more
-          </a>
-        </p>
       {{ else }}
         {{ .Content }}
       {{ end }}

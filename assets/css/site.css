@@ -2,18 +2,30 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather:400,400i,700,700i&display=swap&subset=vietnamese');
 
 :root {
-  --text: #fefefe;
-  --text-link: #ffa7c4;
+  --color-scheme: light dark;
+  --text: #3f3f3f;
+  --text-link: #ff4582;
   --text-inline-code: #e6e6e6;
-  --background: #282c35;
-  --secondary-background: #373c49;
-  --background-inline-code: #373c49;
+  --background: #fffeff;
+  --secondary-background: #efefef;
+  --background-inline-code: #dfdfdf;
   --border-color: hsla(0,0%,100%,0.2);
   --sans: Karla, system-ui, sans-serif;
   --serif: Merriweather, Georgia, Cambria, 'Times New Roman', Times, serif;
   --mono: 'Roboto Slab', serif;
   --code: Consolas, Menlo, Monaco, source-code-pro, "Courier New", monospace;
   --gutter: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #fefefe;
+    --text-link: #ffa7c4;
+    --text-inline-code: #e6e6e6;
+    --background: #282c35;
+    --secondary-background: #373c49;
+    --background-inline-code: #373c49;
+  }
 }
 
 @media (min-width: 720px) {
